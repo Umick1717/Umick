@@ -1,0 +1,1399 @@
+/* ===================================
+   GLOBAL
+=================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #dbeafe,
+        #f8fafc
+    );
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 32px 16px;
+
+    overflow-x: hidden;
+}
+
+.loading-text {
+    color: #ffffff;
+
+    font-weight: 600;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, .35);
+}
+
+
+/* ===================================
+   CONTAINER
+=================================== */
+
+.container {
+    width: 100%;
+    max-width: 960px;
+}
+
+
+/* ===================================
+   HEADER
+=================================== */
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.4;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+header p {
+    color: #64748b;
+    margin-top: 8px;
+    font-size: clamp(.9rem, 2vw, 1rem);
+}
+
+
+/* ===================================
+   CARD
+=================================== */
+
+.card {
+    width: 100%;
+
+    background: rgba(255, 255, 255, .92);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    margin-bottom: 24px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+
+    transition: transform .25s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.income-card {
+    border-left: 8px solid #10b981;
+}
+
+.expense-card {
+    border-left: 8px solid #ef4444;
+}
+
+.card h2 {
+    margin-bottom: 24px;
+    color: #1e293b;
+    font-size: 1.5rem;
+}
+
+
+/* ===================================
+   FORM GRID
+=================================== */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-weight: 500;
+
+    font-size: .98rem;
+}
+
+
+/* ===================================
+   INPUT & SELECT
+=================================== */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-width: 0;
+
+    height: 52px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 12px;
+
+    font-family: 'Kanit', sans-serif;
+
+    font-size: 16px;
+
+    background: #fff;
+
+    color: #1e293b;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+/* ช่อง Select */
+
+.form-group select {
+    cursor: pointer;
+
+    padding-right: 40px;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #64748b 50%),
+        linear-gradient(135deg, #64748b 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 18px) 22px,
+        calc(100% - 12px) 22px;
+
+    background-size:
+        6px 6px,
+        6px 6px;
+
+    background-repeat: no-repeat;
+}
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .15);
+}
+
+
+/* ===================================
+   DATE INPUT
+=================================== */
+
+input[type="date"] {
+    min-width: 0;
+
+    color: #1e293b;
+
+    font-family: 'Kanit', sans-serif;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    padding: 4px;
+}
+
+/* ===================================
+   SPLASH SCREEN
+=================================== */
+
+#splashScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, .12),
+            transparent 40%
+        ),
+
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b,
+            #334155
+        );
+
+    animation:
+        splashFadeOut 1s ease 4.8s forwards;
+
+}
+
+
+/* แสงวงกลมด้านหลัง */
+
+#splashScreen::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(16, 185, 129, .25),
+            transparent 65%
+        );
+
+    filter: blur(30px);
+
+    animation:
+        glowPulse 3s ease-in-out infinite;
+
+}
+
+
+/* แสงอีกด้าน */
+
+#splashScreen::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(59, 130, 246, .18),
+            transparent 70%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        glowMove 6s ease-in-out infinite alternate;
+
+}
+
+
+/* ===================================
+   CONTENT
+=================================== */
+
+.splash-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    padding: 20px;
+
+}
+
+
+/* ===================================
+   ICON
+=================================== */
+
+.splash-icon {
+
+    font-size: 80px;
+
+    margin-bottom: 20px;
+
+    opacity: 0;
+
+    animation:
+
+        bearAppear 1s cubic-bezier(.17,.67,.35,1.4) .3s forwards,
+
+        bearFloat 3s ease-in-out 1.5s infinite;
+
+}
+
+
+/* ===================================
+   TITLE
+=================================== */
+
+.splash-title {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 2px;
+
+    margin: 0;
+
+    color: white;
+
+    font-family: 'Kanit', sans-serif;
+
+    font-size: clamp(
+        2.3rem,
+        8vw,
+        5rem
+    );
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+
+        0 0 10px rgba(255, 255, 255, .3),
+
+        0 0 25px rgba(16, 185, 129, .35);
+
+}
+
+
+/* ตัวอักษรแต่ละตัว */
+
+.splash-title span:not(.space) {
+
+    display: inline-block;
+
+    opacity: 0;
+
+    transform: translateY(40px) scale(.7);
+
+    animation:
+
+        letterAppear .7s cubic-bezier(.17,.67,.35,1.4) forwards;
+
+}
+
+
+/* Animation ตัวอักษรทีละตัว */
+
+.splash-title span:nth-child(1) {
+    animation-delay: 1.1s;
+}
+
+.splash-title span:nth-child(2) {
+    animation-delay: 1.2s;
+}
+
+.splash-title span:nth-child(3) {
+    animation-delay: 1.3s;
+}
+
+.splash-title span:nth-child(4) {
+    animation-delay: 1.4s;
+}
+
+.splash-title span:nth-child(5) {
+    animation-delay: 1.5s;
+}
+
+.splash-title span:nth-child(7) {
+    animation-delay: 1.7s;
+}
+
+.splash-title span:nth-child(8) {
+    animation-delay: 1.8s;
+}
+
+.splash-title span:nth-child(9) {
+    animation-delay: 1.9s;
+}
+
+.splash-title span:nth-child(10) {
+    animation-delay: 2s;
+}
+
+.splash-title span:nth-child(11) {
+    animation-delay: 2.1s;
+}
+
+.splash-title span:nth-child(12) {
+    animation-delay: 2.2s;
+}
+
+.splash-title span:nth-child(13) {
+    animation-delay: 2.3s;
+}
+
+.splash-title span:nth-child(14) {
+    animation-delay: 2.4s;
+}
+
+
+/* ===================================
+   SUBTITLE
+=================================== */
+
+.splash-subtitle {
+
+    margin-top: 18px;
+
+    color: rgba(255, 255, 255, .7);
+
+    font-size: clamp(
+        .85rem,
+        2vw,
+        1.1rem
+    );
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+
+    animation:
+
+        subtitleAppear 1s ease 2.8s forwards;
+
+}
+
+
+/* ===================================
+   LOADING BAR
+=================================== */
+
+.loading-bar {
+
+    --loading-time: 4s;
+
+    position: relative;
+
+    width: min(320px, 80vw);
+
+    height: 8px;
+
+    margin: 45px auto 0;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .18);
+
+    overflow: visible;
+
+}
+
+
+/* ===================================
+   PROGRESS BAR
+=================================== */
+
+.loading-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        90deg,
+        #10b981,
+        #38bdf8,
+        #a78bfa
+    );
+
+    animation:
+
+        progressRun var(--loading-time)
+        linear forwards;
+
+}
+
+
+/* ===================================
+   BEAR
+=================================== */
+
+.walking-bear {
+
+    position: absolute;
+
+    left: 0%;
+
+    bottom: 8px;
+
+    z-index: 10;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    /* จุดกึ่งกลางของหมีอยู่ตรงกับปลาย Progress */
+
+    transform:
+
+        translateX(-50%);
+
+    animation:
+
+        bearWalk var(--loading-time)
+        linear forwards;
+
+}
+
+
+/* ===================================
+   PROGRESS
+=================================== */
+
+@keyframes progressRun {
+
+    from {
+
+        width: 0%;
+
+    }
+
+    to {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* ===================================
+   BEAR WALK
+=================================== */
+
+@keyframes bearWalk {
+
+    from {
+
+        left: 0%;
+
+    }
+
+    to {
+
+        left: 100%;
+
+    }
+
+}
+
+/* ===================================
+   KEYFRAMES
+=================================== */
+
+@keyframes bearAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-20deg);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.15)
+            rotate(5deg);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
+}
+
+
+@keyframes bearFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px);
+
+    }
+
+}
+
+
+@keyframes letterAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(.7)
+            rotateX(90deg);
+
+    }
+
+    70% {
+
+        transform:
+            translateY(-8px)
+            scale(1.08)
+            rotateX(0);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotateX(0);
+
+    }
+
+}
+
+
+@keyframes subtitleAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes barAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scaleX(.5);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scaleX(1);
+
+    }
+
+}
+
+
+@keyframes progressRun {
+
+    from {
+
+        width: 0%;
+
+    }
+
+    to {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.8);
+
+        opacity: .5;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes glowMove {
+
+    from {
+
+        transform:
+            translate(
+                -150px,
+                -100px
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                150px,
+                100px
+            );
+
+    }
+
+}
+
+
+@keyframes splashFadeOut {
+
+    0% {
+
+        opacity: 1;
+
+        visibility: visible;
+
+    }
+
+    80% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+    }
+
+}
+
+/* ===================================
+   MAIN CONTENT APPEAR
+=================================== */
+
+.container {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    animation:
+
+        mainContentAppear 1.2s ease 4.8s forwards;
+
+}
+
+
+@keyframes mainContentAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+/* ===================================
+   BUTTON WITH BEAR BACKGROUND
+=================================== */
+
+.button-area {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 28px;
+}
+
+
+/* ปุ่มพื้นฐาน */
+
+button {
+    position: relative;
+
+    width: 100%;
+    max-width: 360px;
+
+    min-height: 78px;
+
+    border: none;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    color: white;
+
+    font-family: 'Kanit', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    background-image:
+        linear-gradient(
+            rgba(16, 185, 129, .62),
+            rgba(16, 185, 129, .62)
+        ),
+        url("bear.png");
+
+    background-size:
+        cover,
+        115px auto;
+
+    background-position:
+        center,
+        left center;
+
+    background-repeat:
+        no-repeat;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, .15);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+
+/* ปุ่มรายรับ */
+
+.btn-income {
+    background-image:
+        linear-gradient(
+            rgba(16, 185, 129, .65),
+            rgba(16, 185, 129, .65)
+        ),
+        url("bear.png");
+}
+
+
+/* ปุ่มค่าใช้จ่าย */
+
+.btn-expense {
+    background-image:
+        linear-gradient(
+            rgba(239, 68, 68, .65),
+            rgba(239, 68, 68, .65)
+        ),
+        url("bear.png");
+}
+
+
+/* ตัวหนังสือบนปุ่ม */
+
+.button-text {
+    position: relative;
+
+    z-index: 2;
+
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, .35);
+}
+
+
+/* Hover */
+
+button:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, .2);
+}
+
+
+/* ตอนกดปุ่ม */
+
+button:active {
+    transform: scale(.97);
+}
+
+
+/* ===================================
+   MOBILE BUTTON
+=================================== */
+
+@media (max-width: 480px) {
+
+    button {
+        max-width: 100%;
+
+        min-height: 70px;
+
+        border-radius: 16px;
+
+        font-size: 16px;
+
+        background-size:
+            cover,
+            100px auto;
+    }
+
+}
+
+/* ===================================
+   LOADING
+=================================== */
+
+.loading {
+    display: none;
+
+    text-align: center;
+
+    margin-top: 25px;
+}
+
+.spinner {
+    width: 55px;
+    height: 55px;
+
+    margin: auto;
+
+    border: 6px solid #e5e7eb;
+
+    border-top: 6px solid #2563eb;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+.loading p {
+    margin-top: 15px;
+
+    color: #475569;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 24px 12px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 24px 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 52px;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}
+
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 14px 10px;
+    }
+
+    header {
+        margin-bottom: 22px;
+    }
+
+    header h1 {
+        font-size: 1.55rem;
+
+        line-height: 1.45;
+    }
+
+    header p {
+        font-size: .88rem;
+    }
+
+    .card {
+        padding: 20px 14px;
+
+        border-radius: 18px;
+
+        margin-bottom: 18px;
+    }
+
+    .income-card,
+    .expense-card {
+        border-left-width: 6px;
+    }
+
+    .card h2 {
+        font-size: 1.35rem;
+
+        margin-bottom: 20px;
+    }
+
+    .form-grid {
+        gap: 16px;
+    }
+
+    .form-group label {
+        font-size: .95rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 50px;
+
+        padding-left: 13px;
+        padding-right: 13px;
+
+        font-size: 16px;
+    }
+
+    .form-group select {
+        padding-right: 38px;
+    }
+
+    .button-area {
+        margin-top: 24px;
+    }
+
+    button {
+        min-height: 50px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* ===================================
+   SMALL PHONES
+=================================== */
+
+@media (max-width: 360px) {
+
+    body {
+        padding: 10px 8px;
+    }
+
+    header h1 {
+        font-size: 1.35rem;
+    }
+
+    .card {
+        padding: 18px 12px;
+    }
+
+    .card h2 {
+        font-size: 1.25rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 16px;
+    }
+}
+
+
+/* ===================================
+   LARGE DESKTOP
+=================================== */
+
+@media (min-width: 1200px) {
+
+    .container {
+        max-width: 980px;
+    }
+}
+
+/* ===================================
+   SELECT - EFFECT ไล่สีตาม CURSOR / นิ้ว
+=================================== */
+
+.form-group select {
+    position: relative;
+
+    /* สีพื้นฐาน */
+    background-color: #ffffff;
+
+    /* เส้นขอบเริ่มต้น */
+    border: 2px solid #d1d5db;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease,
+        background-position .15s ease,
+        transform .2s ease;
+
+    /* เอฟเฟกต์แสงไล่สี */
+    background-image:
+        radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, .9) 0%,
+            rgba(255, 255, 255, .35) 12%,
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(16, 185, 129, .08),
+            rgba(59, 130, 246, .08),
+            rgba(168, 85, 247, .08),
+            rgba(239, 68, 68, .08)
+        ),
+
+        /* ลูกศร Select */
+        linear-gradient(45deg, transparent 50%, #64748b 50%),
+        linear-gradient(135deg, #64748b 50%, transparent 50%);
+
+    background-position:
+        var(--mouse-x, 50%) var(--mouse-y, 50%),
+        0% 50%,
+        calc(100% - 18px) 22px,
+        calc(100% - 12px) 22px;
+
+    background-size:
+        180px 180px,
+        400% 400%,
+        6px 6px,
+        6px 6px;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat;
+}
+
+
+/* เมื่อ Mouse Hover */
+.form-group select:hover {
+
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 0 4px rgba(139, 92, 246, .12),
+        0 8px 20px rgba(139, 92, 246, .12);
+
+    transform: translateY(-2px);
+
+    animation: selectGradient 4s ease infinite;
+}
+
+
+/* เมื่อแตะหรือเลือกบนมือถือ */
+.form-group select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, .15),
+        0 8px 20px rgba(37, 99, 235, .15);
+
+    transform: scale(1.01);
+}
+
+
+/* Gradient เคลื่อนที่ */
+@keyframes selectGradient {
+
+    0% {
+        background-position:
+            var(--mouse-x, 50%) var(--mouse-y, 50%),
+            0% 50%,
+            calc(100% - 18px) 22px,
+            calc(100% - 12px) 22px;
+    }
+
+    50% {
+        background-position:
+            var(--mouse-x, 50%) var(--mouse-y, 50%),
+            100% 50%,
+            calc(100% - 18px) 22px,
+            calc(100% - 12px) 22px;
+    }
+
+    100% {
+        background-position:
+            var(--mouse-x, 50%) var(--mouse-y, 50%),
+            0% 50%,
+            calc(100% - 18px) 22px,
+            calc(100% - 12px) 22px;
+    }
+}
+
+
+/* รายรับ - โทนเขียว */
+#incomeGroup:hover {
+
+    border-color: #10b981;
+
+    box-shadow:
+        0 0 0 4px rgba(16, 185, 129, .14),
+        0 8px 20px rgba(16, 185, 129, .16);
+}
+
+
+/* ค่าใช้จ่าย - โทนแดง/ชมพู */
+#expenseGroup:hover {
+
+    border-color: #ef4444;
+
+    box-shadow:
+        0 0 0 4px rgba(239, 68, 68, .14),
+        0 8px 20px rgba(239, 68, 68, .16);
+}
+
+
+/* มือถือ - ไม่ให้ขยายแรงเกินไป */
+@media (max-width: 480px) {
+
+    .form-group select:hover {
+        transform: translateY(-1px);
+    }
+
+    .form-group select:focus {
+        transform: scale(1.005);
+    }
+
+}

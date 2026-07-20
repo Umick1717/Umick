@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ระบบบันทึกรายรับ - รายจ่าย</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ===================================
+SPLASH SCREEN
+=================================== -->
+
+<div id="splashScreen">
+
+    <div class="splash-content">
+
+        <div class="splash-icon">
+            🐻
+        </div>
+
+        <h1 class="splash-title">
+            <span>U</span>
+            <span>m</span>
+            <span>i</span>
+            <span>c</span>
+            <span>k</span>
+            <span class="space"></span>
+            <span>E</span>
+            <span>x</span>
+            <span>p</span>
+            <span>e</span>
+            <span>n</span>
+            <span>d</span>
+            <span>e</span>
+            <span>r</span>
+        </h1>
+
+        <p class="splash-subtitle">
+            Smart Income & Expense Management ― Umick©
+        </p>
+
+        <div class="loading-bar">
+
+         <div class="loading-progress"></div>
+
+            <div class="walking-bear">
+        🐻
+        </div>
+
+    </div>
+
+    <p class="loading-text">
+        Preparing your expense tracker 2026...
+    </p>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <header>
+
+        <h1>💰 ระบบบันทึกรายรับ - รายจ่าย</h1>
+
+        <p>
+            บันทึกข้อมูลลง Google Sheet อัตโนมัติ
+        </p>
+
+    </header>
+
+    <!-- =============================== -->
+    <!-- รายรับ -->
+    <!-- =============================== -->
+
+    <section class="card income-card">
+
+        <h2>📈 รายรับ</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>วันที่</label>
+
+        <input
+        type="date"
+        id="incomeDate"
+        placeholder="dd/mm/yyyy"
+        maxlength="10"
+        inputmode="numeric"
+        autocomplete="off">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>ชื่อรายการ</label>
+
+                <input
+                    type="text"
+                    id="incomeItem"
+                    placeholder="เช่น เงินเดือน">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>จำนวนเงิน</label>
+
+                <input
+                id="incomeAmount"
+                type="text"
+                inputmode="numeric"
+                placeholder="จำนวนเงิน">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>กลุ่ม</label>
+
+                <select id="incomeGroup">
+
+                    <option value="">เลือกกลุ่ม</option>
+
+                    <option>เงินเดือนหลัก</option>
+
+                    <option>Bonus</option>
+
+                    <option>Dividen</option>
+
+                    <option>การลงทุน</option>
+
+                    <option>ดอกเบี้ยพันธบัตรรัฐบาล</option>
+
+                    <option>ดอกเบี้ยหุ้นกู้</option>
+
+                    <option>บัญชีกสิกร</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="button-area">
+
+            <button
+                class="btn-income"
+                id="saveIncome">
+
+        <span class="button-text">
+        🐻 บันทึกรายรับ
+        </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- =============================== -->
+    <!-- ค่าใช้จ่าย -->
+    <!-- =============================== -->
+
+    <section class="card expense-card">
+
+        <h2>📉 ค่าใช้จ่าย</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>วันที่</label>
+
+            <input
+            type="date"
+            id="expenseDate"
+            placeholder="dd/mm/yyyy"
+            maxlength="10"
+            inputmode="numeric"
+            autocomplete="off">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>ชื่อรายการ</label>
+
+                <input
+                    type="text"
+                    id="expenseItem"
+                    placeholder="เช่น ค่าอาหาร">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>จำนวนเงิน</label>
+
+                <input
+                id="expenseAmount"
+                type="text"
+                inputmode="numeric"
+                placeholder="จำนวนเงิน">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>กลุ่ม</label>
+
+                <select id="expenseGroup">
+
+                    <option value="">เลือกกลุ่ม</option>
+
+                    <option>ค่าอินเตอร์เน็ตบ้าน</option>
+
+                    <option>ค่าอินเตอร์เน็ตคอนโด</option>
+
+                    <option>ค่าน้ำ-ไฟบ้าน</option>
+
+                    <option>ค่าน้ำ-ไฟคอนโด</option>
+
+                    <option>ค่าส่วนกลางบ้าน Malton</option>
+
+                    <option>ค่าส่วนกลางคอนโด Noble Ploenchit</option>
+
+                    <option>ค่าอาหาร</option>
+
+                    <option>ค่าใช้จ่ายในครอบครัว</option>
+
+                    <option>การลงทุน</option>
+
+                    <option>ค่าโทรศัพท์</option>
+
+                    <option>ค่าเดินทาง</option>
+
+                    <option>เสื้อผ้า</option>
+
+                    <option>ซื้อของให้ผู้อื่น</option>
+
+                    <option>ค่าบุหรี่</option>
+
+                    <option>ค่าน้ำดื่ม</option>
+
+                    <option>ค่าขนม</option>
+
+                    <option>ค่าหาหมอ</option>
+
+                    <option>ค่าซุปเปอร์มาร์เกต</option>
+
+                    <option>ค่ากาแฟ</option>
+
+                    <option>ค่าหนังสือ</option>
+
+                    <option>ค่างานศิลปะ</option>
+
+                    <option>ค่าตัดผม</option>
+
+                    <option>ค่าล้างแอร์บ้าน</option>
+
+                    <option>ค่าล้างแอร์คอนโด</option>
+
+                    <option>ค่าเบี้ยประกันรถยนต์ไอซ์</option>
+
+                    <option>ค่ายา</option>
+
+                    <option>ค่าภาษีที่ดินคอนโด</option>
+
+                    <option>ค่าภาษีที่ดินบ้าน</option>
+
+                    <option>ค่าเซอร์วิสรถยนต์</option>
+
+                    <option>ค่าโทรศัพท์มือถือ</option>
+
+                    <option>เครื่องเขียน</option>
+
+                    <option>ค่าทำบ้าน</option>
+
+                    <option>อื่นๆ</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="button-area">
+
+            <button
+                class="btn-expense"
+                id="saveExpense">
+
+            <span class="button-text">
+                🐻 บันทึกค่าใช้จ่าย
+            </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Loading -->
+
+    <div id="loading" class="loading">
+
+        <div class="spinner"></div>
+
+        <p>กำลังบันทึกข้อมูล...</p>
+
+    </div>
+
+    <!-- Result -->
+
+    <div id="message" class="message">
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+const selectElements = [
+    document.getElementById("incomeGroup"),
+    document.getElementById("expenseGroup")
+];
+
+selectElements.forEach(select => {
+
+    if (!select) return;
+
+    /* สำหรับคอมพิวเตอร์ */
+    select.addEventListener("mousemove", function (event) {
+
+        const rect = this.getBoundingClientRect();
+
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        this.style.setProperty(
+            "--mouse-x",
+            `${x}px`
+        );
+
+        this.style.setProperty(
+            "--mouse-y",
+            `${y}px`
+        );
+
+    });
+
+
+    /* สำหรับมือถือ */
+    select.addEventListener("touchmove", function (event) {
+
+        const touch = event.touches[0];
+
+        const rect = this.getBoundingClientRect();
+
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        this.style.setProperty(
+            "--mouse-x",
+            `${x}px`
+        );
+
+        this.style.setProperty(
+            "--mouse-y",
+            `${y}px`
+        );
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
