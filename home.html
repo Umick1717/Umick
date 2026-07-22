@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Family Home Dashboard</title>
+
+    <meta name="theme-color" content="#0f172a">
+
+    <link rel="stylesheet" href="home.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================================
+    SPLASH SCREEN
+    (ใช้ Animation เดิมของ Umick Expender)
+    ==================================================== -->
+
+    <div id="splashScreen">
+
+        <div class="splash-container">
+
+            <img
+                src="images/bear.png"
+                class="loading-bear"
+                alt="Bear">
+
+            <h1 class="loading-title">
+
+                Snow Malton Gates 36
+
+            </h1>
+
+            <p class="loading-text">
+
+                Preparing your smart home dashboard...
+
+            </p>
+
+            <div class="loading-bar">
+
+                <div class="loading-progress"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================
+    SNOW
+    ==================================================== -->
+
+    <div id="snowContainer"></div>
+
+    <!-- ===================================================
+    MAIN
+    ==================================================== -->
+
+    <div id="app">
+
+        <!-- ==========================================
+        HEADER
+        =========================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <div class="logo">
+
+                    <b><u><i>❄️ 🏡 Snow Malton Gates 18/36 🏡 ❄️</i></u></b>
+
+                </div>
+
+            </div>
+
+            <button
+                id="menuToggle"
+                class="hamburger">
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+            <nav id="mainMenu">
+
+                <ul>
+
+                    <li>
+
+                        <a href="#home"
+                            data-page="home">
+
+                            <i class="fas fa-house"></i>
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="#">
+
+                            <i class="fas fa-folder-open"></i>
+
+                            ข้อมูลไฟล์บ้าน
+
+                            <i class="fas fa-chevron-down"></i>
+
+                        </a>
+
+                        <ul class="submenu">
+
+                            <li>
+
+                                <a
+                                    href="#"
+                                    data-file="blueprint">
+
+                                    📐 ไฟล์พิมพ์เขียว
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a
+                                    href="#"
+                                    data-file="adam">
+
+                                    👷 ผู้รับเหมา Adam
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a
+                                    href="#"
+                                    data-file="ggb">
+
+                                    🏗 ผู้รับเหมา GGB
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a
+                                    href="#"
+                                    data-file="solar">
+
+                                    ☀ SCG Solar Cell
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a
+                                    href="#"
+                                    data-file="electric">
+
+                                    🔌 เครื่องใช้ไฟฟ้า
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            href="#expense"
+                            data-page="expense">
+
+                            <i class="fas fa-wallet"></i>
+
+                            รายรับ–รายจ่าย
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            href="#location"
+                            data-page="location">
+
+                            <i class="fas fa-location-dot"></i>
+
+                            Location
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            href="#family"
+                            data-page="family">
+
+                            <i class="fas fa-comments"></i>
+
+                            ครอบครัว
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </header>
+
+    <main id="content">
+
+        <!-- ==========================================
+        HERO
+        =========================================== -->
+
+        <section id="home" class="page active">
+
+            <div class="hero-overlay">
+
+                <div class="hero-card">
+
+                    <h1>
+
+                        Welcome Home
+
+                    </h1>
+
+                    <h2>
+
+                        Malton Private Residence
+
+                    </h2>
+
+                    <p>
+
+                        Smart Family Management Dashboard
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button
+                            class="primary-btn"
+                            id="startBtn">
+
+                            <i class="fas fa-house"></i>
+
+                            เริ่มต้นใช้งาน
+
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            id="gotoExpense">
+
+                            <i class="fas fa-wallet"></i>
+
+                            รายรับ–รายจ่าย
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================================
+        QUICK MENU
+        =========================================== -->
+
+        <section class="quick-menu">
+
+            <div
+                class="menu-card"
+                data-page="files">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+
+                    ข้อมูลไฟล์บ้าน
+
+                </h3>
+
+                <p>
+
+                    Blueprint / Contractor / Solar
+
+                </p>
+
+            </div>
+
+            <div
+                class="menu-card"
+                data-page="expense">
+
+                <i class="fas fa-wallet"></i>
+
+                <h3>
+
+                    รายรับ–รายจ่าย
+
+                </h3>
+
+                <p>
+
+                    Income & Expense Tracker
+
+                </p>
+
+            </div>
+
+            <div
+                class="menu-card"
+                data-page="location">
+
+                <i class="fas fa-map-location-dot"></i>
+
+                <h3>
+
+                    Location
+
+                </h3>
+
+                <p>
+
+                    Google Maps Navigation
+
+                </p>
+
+            </div>
+
+            <div
+                class="menu-card"
+                data-page="family">
+
+                <i class="fas fa-comments"></i>
+
+                <h3>
+
+                    Family Board
+
+                </h3>
+
+                <p>
+
+                    Messages & Announcement
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+    <!-- ===========================================================
+    HOUSE FILES PAGE
+    =========================================================== -->
+
+    <section id="files" class="page hidden-page">
+
+    <div class="page-title">
+
+        <h2>
+
+            <i class="fas fa-folder-open"></i>
+
+            ข้อมูลไฟล์บ้าน
+
+        </h2>
+
+        <p>
+
+            เอกสารทั้งหมดของบ้าน
+
+        </p>
+
+    </div>
+
+    <div class="file-grid">
+
+        <!-- ===================== -->
+
+        <div class="file-card">
+
+            <div class="file-icon">
+
+                📐
+
+            </div>
+
+            <h3>
+
+                ไฟล์พิมพ์เขียว
+
+            </h3>
+
+            <p>
+
+                Blueprint Drawing
+
+            </p>
+
+            <button
+                class="open-file"
+                data-link="#">
+
+                เปิดไฟล์
+
+            </button>
+
+        </div>
+
+        <!-- ===================== -->
+
+        <div class="file-card">
+
+            <div class="file-icon">
+
+                👷
+
+            </div>
+
+            <h3>
+
+                ผู้รับเหมา Adam
+
+            </h3>
+
+            <p>
+
+                Google Sheet / PDF
+
+            </p>
+
+            <button
+                class="open-file"
+                data-link="#">
+
+                เปิดไฟล์
+
+            </button>
+
+        </div>
+
+        <!-- ===================== -->
+
+        <div class="file-card">
+
+            <div class="file-icon">
+
+                🏗
+
+            </div>
+
+            <h3>
+
+                ผู้รับเหมา GGB
+
+            </h3>
+
+            <p>
+
+                Google Sheet
+
+            </p>
+
+            <button
+                class="open-file"
+                data-link="#">
+
+                เปิดไฟล์
+
+            </button>
+
+        </div>
+
+        <!-- ===================== -->
+
+        <div class="file-card">
+
+            <div class="file-icon">
+
+                ☀
+
+            </div>
+
+            <h3>
+
+                SCG Solar Cell
+
+            </h3>
+
+            <p>
+
+                Solar Installation
+
+            </p>
+
+            <button
+                class="open-file"
+                data-link="#">
+
+                เปิดไฟล์
+
+            </button>
+
+        </div>
+
+        <!-- ===================== -->
+
+        <div class="file-card">
+
+            <div class="file-icon">
+
+                🔌
+
+            </div>
+
+            <h3>
+
+                เครื่องใช้ไฟฟ้า
+
+            </h3>
+
+            <p>
+
+                Warranty / Manual
+
+            </p>
+
+            <button class="open-file"data-link="#">เปิดไฟล์</button>
+
+        </div>
+
+    </div>
+
+    </section>
+
+    <!-- ===========================================================
+    EXPENSE PAGE
+    =========================================================== -->
+
+    <section id="expense" class="page hidden-page">
+
+    <div class="page-title">
+
+        <h2>
+
+            💰 รายรับ–รายจ่าย
+
+        </h2>
+
+        <p>
+
+            เปิดระบบเดิมของ Umick Expender
+
+        </p>
+
+    </div>
+
+    <div class="expense-box">
+
+        <img
+            src="images/bear.png"
+            class="expense-bear">
+
+        <h3>
+
+            Smart Income & Expense
+
+        </h3>
+
+        <p>
+
+            ระบบเดิมของคุณจะถูกเปิดทันที
+
+        </p>
+
+        <button id="openExpense">
+
+            เปิดระบบ
+
+        </button>
+    
+    </div>
+
+    </section>
+
+    <!-- ===========================================================
+     LOCATION PAGE
+=========================================================== -->
+
+<section id="location" class="page hidden-page">
+
+    <div class="location-wrapper">
+
+        <div class="location-header">
+
+            <div class="location-icon">
+                <i class="fas fa-location-dot"></i>
+            </div>
+
+            <h2>
+                Location บ้าน
+            </h2>
+
+            <p>
+                Snow Malton Gates 18/36
+            </p>
+
+        </div>
+
+        <div class="map-card">
+
+            <div class="map-frame">
+
+                <iframe
+                    src="https://www.google.com/maps?q=13.7569722,100.6874444&z=19&output=embed"
+                    title="ตำแหน่งบ้าน Snow Malton Gates 18/36"
+                    loading="lazy"
+                    allowfullscreen=""
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+            </div>
+
+            <div class="map-information">
+
+                <div class="map-detail">
+
+                    <div class="map-detail-icon">
+                        <i class="fas fa-house"></i>
+                    </div>
+
+                    <div>
+                        <h3>Snow Malton Gates 18/36</h3>
+
+                        <p>
+                            พิกัด 13.7569722, 100.6874444
+                        </p>
+                    </div>
+
+                </div>
+
+                <button
+                    id="googleMapButton"
+                    class="google-map-button"
+                    type="button">
+
+                    <i class="fas fa-diamond-turn-right"></i>
+
+                    เปิดเส้นทางใน Google Maps
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =======================================================
+FAMILY BOARD
+======================================================= -->
+
+<section id="family" class="page hidden-page">
+
+<div class="family-wrapper">
+
+<div class="family-header">
+
+<h2>
+
+💬 Family Board
+
+</h2>
+
+<p>
+
+แชร์ข้อความถึงทุกคนในบ้าน
+
+</p>
+
+</div>
+
+
+<!-- ========================= -->
+
+<div class="post-card">
+
+<div class="post-user">
+
+<img
+
+src="images/avatar.jpg"
+
+class="avatar">
+
+<div>
+
+<h3>
+
+ผู้ใช้งาน
+
+</h3>
+
+<p>
+
+Family Member
+
+</p>
+
+</div>
+
+</div>
+
+
+<input
+
+id="userName"
+
+class="family-input"
+
+type="text"
+
+placeholder="ชื่อผู้โพสต์">
+
+
+
+<textarea
+
+id="familyMessage"
+
+class="family-text"
+
+placeholder="เขียนข้อความถึงครอบครัว...">
+
+</textarea>
+
+
+
+<div class="button-group">
+
+<button
+
+id="postMessage"
+
+class="post-btn">
+
+📨 โพสต์ข้อความ
+
+</button>
+
+<button
+
+id="clearMessage"
+
+class="cancel-btn">
+
+ล้างข้อความ
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+
+<div
+
+id="messageContainer"
+
+class="message-list">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- วาง Footer ตรงนี้ -->
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+        <h3>🏡 Family Home Dashboard</h3>
+
+        <p>
+            Smart Family Management System
+        </p>
+
+        <p>
+            Developed by Umick © 2026
+        </p>
+
+    </div>
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="home.js"></script>
+
+</body>
+
+</html>
