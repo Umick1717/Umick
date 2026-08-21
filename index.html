@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>ระบบบันทึกรายรับ - รายจ่าย</title>
 
@@ -49,17 +49,17 @@ SPLASH SCREEN
 
         <div class="loading-bar">
 
-         <div class="loading-progress"></div>
+            <div class="loading-progress"></div>
 
             <div class="walking-bear">
-        🐻
+                🐻
+            </div>
+
         </div>
 
-    </div>
-
-    <p class="loading-text">
-        Preparing your expense tracker 2026...
-    </p>
+        <p class="loading-text">
+            Preparing your expense tracker 2026...
+        </p>
 
     </div>
 
@@ -91,13 +91,13 @@ SPLASH SCREEN
 
                 <label>วันที่</label>
 
-        <input
-        type="date"
-        id="incomeDate"
-        placeholder="dd/mm/yyyy"
-        maxlength="10"
-        inputmode="numeric"
-        autocomplete="off">
+                <input
+                    type="date"
+                    id="incomeDate"
+                    placeholder="dd/mm/yyyy"
+                    maxlength="10"
+                    inputmode="numeric"
+                    autocomplete="off">
 
             </div>
 
@@ -117,10 +117,15 @@ SPLASH SCREEN
                 <label>จำนวนเงิน</label>
 
                 <input
-                id="incomeAmount"
-                type="text"
-                inputmode="numeric"
-                placeholder="จำนวนเงิน">
+                    id="incomeAmount"
+                    type="text"
+                    inputmode="decimal"
+                    pattern="[0-9๐-๙]*[.,]?[0-9๐-๙]*"
+                    enterkeyhint="done"
+                    placeholder="เช่น 1250.50"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false">
 
             </div>
 
@@ -158,9 +163,9 @@ SPLASH SCREEN
                 class="btn-income"
                 id="saveIncome">
 
-        <span class="button-text">
-        🐻 บันทึกรายรับ
-        </span>
+                <span class="button-text">
+                    🐻 บันทึกรายรับ
+                </span>
 
             </button>
 
@@ -182,13 +187,13 @@ SPLASH SCREEN
 
                 <label>วันที่</label>
 
-            <input
-            type="date"
-            id="expenseDate"
-            placeholder="dd/mm/yyyy"
-            maxlength="10"
-            inputmode="numeric"
-            autocomplete="off">
+                <input
+                    type="date"
+                    id="expenseDate"
+                    placeholder="dd/mm/yyyy"
+                    maxlength="10"
+                    inputmode="numeric"
+                    autocomplete="off">
 
             </div>
 
@@ -208,10 +213,15 @@ SPLASH SCREEN
                 <label>จำนวนเงิน</label>
 
                 <input
-                id="expenseAmount"
-                type="text"
-                inputmode="numeric"
-                placeholder="จำนวนเงิน">
+                    id="expenseAmount"
+                    type="text"
+                    inputmode="decimal"
+                    pattern="[0-9๐-๙]*[.,]?[0-9๐-๙]*"
+                    enterkeyhint="done"
+                    placeholder="เช่น 1250.50"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false">
 
             </div>
 
@@ -301,9 +311,9 @@ SPLASH SCREEN
                 class="btn-expense"
                 id="saveExpense">
 
-            <span class="button-text">
-                🐻 บันทึกค่าใช้จ่าย
-            </span>
+                <span class="button-text">
+                    🐻 บันทึกค่าใช้จ่าย
+                </span>
 
             </button>
 
@@ -323,71 +333,12 @@ SPLASH SCREEN
 
     <!-- Result -->
 
-    <div id="message" class="message">
-
-    </div>
+    <div id="message" class="message"></div>
 
 </div>
 
 <script src="script.js"></script>
-
-<script>
-
-const selectElements = [
-    document.getElementById("incomeGroup"),
-    document.getElementById("expenseGroup")
-];
-
-selectElements.forEach(select => {
-
-    if (!select) return;
-
-    /* สำหรับคอมพิวเตอร์ */
-    select.addEventListener("mousemove", function (event) {
-
-        const rect = this.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        this.style.setProperty(
-            "--mouse-x",
-            `${x}px`
-        );
-
-        this.style.setProperty(
-            "--mouse-y",
-            `${y}px`
-        );
-
-    });
-
-
-    /* สำหรับมือถือ */
-    select.addEventListener("touchmove", function (event) {
-
-        const touch = event.touches[0];
-
-        const rect = this.getBoundingClientRect();
-
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-
-        this.style.setProperty(
-            "--mouse-x",
-            `${x}px`
-        );
-
-        this.style.setProperty(
-            "--mouse-y",
-            `${y}px`
-        );
-
-    });
-
-});
-
-</script>
+<script src="mobile-decimal-v2.js?v=2"></script>
 
 </body>
 </html>
