@@ -1,5 +1,5 @@
 /* =========================================================
-   Umick Expense Tracker - Mobile Decimal Compatibility V2
+   Umick Expense Tracker - Mobile Decimal Compatibility V2.1
    iPhone / iPad / Android / Tablet
    ========================================================= */
 (() => {
@@ -59,6 +59,56 @@
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
+  };
+
+  // Override the legacy validators so formatted values such as 1,234.50
+  // and locale values such as 1234,50 are accepted correctly.
+  window.validateIncome = function() {
+    if (incomeDate.value === "") {
+      showError("กรุณาเลือกวันที่");
+      incomeDate.focus();
+      return false;
+    }
+    if (incomeItem.value.trim() === "") {
+      showError("กรุณากรอกชื่อรายการ");
+      incomeItem.focus();
+      return false;
+    }
+    if (window.cleanNumber(incomeAmount.value) <= 0) {
+      showError("กรุณากรอกจำนวนเงิน");
+      incomeAmount.focus();
+      return false;
+    }
+    if (incomeGroup.value === "") {
+      showError("กรุณาเลือกกลุ่ม");
+      incomeGroup.focus();
+      return false;
+    }
+    return true;
+  };
+
+  window.validateExpense = function() {
+    if (expenseDate.value === "") {
+      showError("กรุณาเลือกวันที่");
+      expenseDate.focus();
+      return false;
+    }
+    if (expenseItem.value.trim() === "") {
+      showError("กรุณากรอกชื่อรายการ");
+      expenseItem.focus();
+      return false;
+    }
+    if (window.cleanNumber(expenseAmount.value) <= 0) {
+      showError("กรุณากรอกจำนวนเงิน");
+      expenseAmount.focus();
+      return false;
+    }
+    if (expenseGroup.value === "") {
+      showError("กรุณาเลือกกลุ่ม");
+      expenseGroup.focus();
+      return false;
+    }
+    return true;
   };
 
   const normalizeWhileTyping = event => {
