@@ -1151,69 +1151,35 @@ saveLastRecord=function(data){
 
 function liveNumberFormat(input){
 
+    // Preserve partially typed decimal values such as 203., 203.0 and 203.04.
+    // Do not use Number(...).toLocaleString() during an input event,
+    // because that strips trailing zeros before the next digit arrives.
     input.addEventListener("input", function(){
 
-        let raw = this.value;
+        const previous = this.value;
+        const caret = this.selectionStart;
+        let normalized = previous
+            .replace(/,/g, "")
+            .replace(/[^0-9.]/g, "");
 
-        // ลบ comma ออกก่อน
-        raw = raw.replace(/,/g, "");
-
-        // อนุญาตเฉพาะตัวเลขและจุดทศนิยม
-        raw = raw.replace(/[^\d.]/g, "");
-
-        // ให้มีจุดทศนิยมได้เพียง 1 จุด
-        const parts = raw.split(".");
-
-        if(parts.length > 2){
-
-            raw = parts[0] + "." + parts.slice(1).join("");
-
+        const point = normalized.indexOf(".");
+        if(point !== -1){
+            normalized = normalized.slice(0, point + 1)
+                + normalized.slice(point + 1).replace(/\./g, "");
         }
 
-        // ถ้ายังไม่มีตัวเลข ให้ปล่อยว่าง
-        if(raw === ""){
-
-            this.value = "";
-
-            return;
-
+        if(normalized !== previous){
+            this.value = normalized;
+            if(caret !== null){
+                const before = previous.slice(0,caret)
+                    .replace(/,/g,"")
+                    .replace(/[^0-9.]/g,"");
+                const newCaret = Math.min(before.length,normalized.length);
+                this.setSelectionRange(newCaret,newCaret);
+            }
         }
-
-        // กรณีผู้ใช้กำลังพิมพ์ เช่น 100.
-        // ต้องเก็บจุดไว้ ไม่เช่นนั้นจะพิมพ์ทศนิยมต่อไม่ได้
-        if(raw.endsWith(".")){
-
-            const integerPart = raw.slice(0, -1);
-
-            this.value = Number(integerPart).toLocaleString("en-US") + ".";
-
-            return;
-
-        }
-
-        const number = Number(raw);
-
-        if(isNaN(number)){
-
-            this.value = "";
-
-            return;
-
-        }
-
-        // แสดง comma แต่ไม่บังคับทศนิยม
-        this.value = number.toLocaleString("en-US", {
-
-            maximumFractionDigits: 2
-
-        });
-
     });
-
 }
-
-
-
 liveNumberFormat(
     incomeAmount
 );
